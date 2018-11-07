@@ -65,7 +65,7 @@ android {
       testProguardFile 'proguard-rules-test.pro'
       applicationIdSuffix '.debug'
       versionNameSuffix "-dev [${getGitHash()}]"
-      manifestPlaceholders = [showPerfLogs:'true']
+      manifestPlaceholders.showPerfLogs = 'true'
     }
     release {
       signingConfig signingConfigs.release
@@ -73,7 +73,7 @@ android {
       minifyEnabled true
       useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-      manifestPlaceholders = [showPerfLogs:'false']
+      manifestPlaceholders.showPerfLogs = 'false'
     }
   }
 
