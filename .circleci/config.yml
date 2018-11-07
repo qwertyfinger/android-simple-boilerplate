@@ -61,7 +61,7 @@ clean_secrets: &clean_secrets
     name: Cleanup secrets
     command: signing/cleanup.sh
 
-workflow_filter_all: &workflow_filter_all
+filter_all_tags: &filter_all_tags
   filters:
     tags:
       only: /.*/
@@ -159,17 +159,17 @@ workflows:
   build_test_deploy:
     jobs:
       - build_debug:
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
       - test_instrumented:
           requires:
             - build_debug
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
       - check:
           requires:
             - build_debug
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
       - build_release:
           requires:
             - test_instrumented
             - check
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
