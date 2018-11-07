@@ -1,0 +1,173 @@
+import buildsrc.BuildConfig
+import buildsrc.Libraries
+
+ext {
+  ci = System.getenv('CI') == 'true'
+}
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+androidExtensions {
+  experimental = true
+}
+
+if (file('google-services.json').exists()) {
+  apply plugin: 'com.google.gms.google-services'
+  apply plugin: 'io.fabric'
+}
+
+android {
+  compileSdkVersion BuildConfig.targetSdk
+  buildToolsVersion BuildConfig.buildTools
+
+  defaultConfig {
+    applicationId 'com.qwertyfinger.androidsimpleboilerplate'
+    minSdkVersion BuildConfig.minSdk
+    targetSdkVersion BuildConfig.targetSdk
+    versionCode 1
+    versionName '1.0'
+
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file('../signing/app-debug.jks')
+      storePassword 'qwerty'
+      keyAlias 'debug'
+      keyPassword 'qwerty'
+    }
+    def keystoreProperties = new Properties()
+    if (ci) {
+      keystoreProperties = project.properties
+    } else {
+      keystoreProperties.load(new FileInputStream(file('../signing/keystore.properties')))
+    }
+    release {
+      storeFile file('../signing/app-release.jks')
+      storePassword keystoreProperties['keystorePassword']
+      keyAlias 'androidsimpleboilerplate'
+      keyPassword keystoreProperties['keyPassword']
+    }
+  }
+
+  buildTypes {
+    debug {
+      signingConfig signingConfigs.debug
+      minifyEnabled true
+      useProguard true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+          'proguard-rules-debug.pro'
+      testProguardFile 'proguard-rules-test.pro'
+      applicationIdSuffix '.debug'
+      versionNameSuffix "-dev [${getGitHash()}]"
+      manifestPlaceholders = [showPerfLogs:'true']
+    }
+    release {
+      signingConfig signingConfigs.release
+      shrinkResources true
+      minifyEnabled true
+      useProguard true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      manifestPlaceholders = [showPerfLogs:'false']
+    }
+  }
+
+  dataBinding {
+    enabled = true
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  testOptions.unitTests.includeAndroidResources = true
+
+  dexOptions {
+    // Don't pre-dex on CI
+    preDexLibraries !ci
+  }
+
+  lintOptions {
+    // Disable lintVital. Not needed since lint is run on CI
+    checkReleaseBuilds false
+
+    disable 'GradleCompatible', 'FontValidationError'
+  }
+
+  packagingOptions {
+    // Exclude AndroidX version files
+    exclude 'META-INF/*.version'
+    // Exclude consumer proguard files
+    exclude 'META-INF/proguard/*'
+    // Exclude the Firebase/Fabric/other random properties files
+    exclude '**/*.properties'
+  }
+
+  /*
+   * Temporary workaround for using latest Dagger versions with Jetifier.
+   * See https://issuetracker.google.com/115738511
+   */
+  configurations.all {
+    resolutionStrategy.force 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
+  }
+}
+
+dependencies {
+  testImplementation 'junit:junit:4.12'
+  testImplementation Libraries.AndroidX.lifecycle_test
+  testImplementation Libraries.mockito
+  testImplementation Libraries.mockito_kotlin
+  testImplementation Libraries.robolectric
+
+  // Dependencies for running Espresso on local JVM using Robolectric
+  testImplementation Libraries.AndroidX.Test.core
+  testImplementation Libraries.AndroidX.Test.espresso_core
+  testImplementation Libraries.AndroidX.Test.junit
+  testImplementation Libraries.AndroidX.Test.rules
+  testImplementation Libraries.AndroidX.Test.runner
+  testImplementation Libraries.AndroidX.Test.truth
+
+  androidTestImplementation Libraries.AndroidX.Test.core
+  androidTestImplementation Libraries.AndroidX.Test.espresso_core
+  androidTestImplementation Libraries.AndroidX.Test.junit
+  androidTestImplementation Libraries.AndroidX.Test.rules
+  androidTestImplementation Libraries.AndroidX.Test.runner
+  androidTestImplementation Libraries.AndroidX.Test.truth
+  androidTestImplementation Libraries.mockito_android
+
+  implementation Libraries.AndroidX.appcompat
+  implementation Libraries.AndroidX.constraint_layout
+  implementation Libraries.AndroidX.core_ktx
+  implementation Libraries.AndroidX.recyclerview
+  implementation Libraries.AndroidX.lifecycle_extensions
+  kapt Libraries.AndroidX.lifecycle_compiler
+  implementation Libraries.coroutines
+  implementation Libraries.coroutines_android
+  implementation (Libraries.crashlytics) {
+    transitive = true
+  }
+  implementation Libraries.dagger
+  kapt Libraries.dagger_compiler
+  implementation Libraries.firebase_core
+  implementation Libraries.kotlin
+  debugImplementation Libraries.leakcanary
+  releaseImplementation Libraries.leakcanary_no_op
+  implementation Libraries.material_design
+  implementation Libraries.threetenabp
+  implementation Libraries.timber
+}
+
+def getGitHash() {
+  def stdout = new ByteArrayOutputStream()
+  exec {
+    commandLine 'git', 'rev-parse', '--short', 'HEAD'
+    standardOutput = stdout
+  }
+  return stdout.toString().trim()
+}

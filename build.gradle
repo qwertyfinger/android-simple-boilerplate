@@ -1,0 +1,66 @@
+import buildsrc.Libraries
+import buildsrc.Versions
+
+buildscript {
+  repositories {
+    google()
+    jcenter()
+    maven { url 'https://maven.fabric.io/public' }
+  }
+
+  dependencies {
+    classpath Libraries.Gradle.android
+    classpath Libraries.Gradle.fabric
+    classpath Libraries.Gradle.google_services
+    classpath Libraries.Gradle.kotlin
+
+    /*
+     * Temporary workaround for using latest Dagger versions with Jetifier.
+     * See https://issuetracker.google.com/115738511
+     */
+    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
+  }
+}
+
+plugins {
+  id 'com.diffplug.gradle.spotless' version '3.16.0'
+  id 'com.github.ben-manes.versions' version '0.20.0'
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+
+  afterEvaluate {
+    if (project.plugins.hasPlugin('kotlin-kapt')) {
+      kapt {
+        useBuildCache = true
+        correctErrorTypes = true
+        mapDiagnosticLocations = true
+        // Increase maximum number of printed errors
+        javacOptions {
+          option('-Xmaxerrs', 500)
+        }
+        // Disable generated code formatting and enable incremental builds for Dagger
+        arguments {
+          arg('dagger.formatGeneratedSource', 'disabled')
+          arg('dagger.gradle.incremental', 'enabled')
+        }
+      }
+    }
+  }
+}
+
+subprojects {
+  apply plugin: 'com.diffplug.gradle.spotless'
+  spotless {
+    kotlin {
+      target '**/*.kt'
+      ktlint(Versions.ktlint).userData(['indent_size': '2'])
+      licenseHeaderFile file('../spotless/copyright.kt')
+      endWithNewline()
+    }
+  }
+}
