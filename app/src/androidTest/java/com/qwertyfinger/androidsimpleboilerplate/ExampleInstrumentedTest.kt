@@ -42,6 +42,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = ApplicationProvider.getApplicationContext<Application>()
-        assertEquals("com.crushingdigits.releasenotifier.debug", appContext.packageName)
+        assertEquals("com.qwertyfinger.androidsimpleboilerplate.debug", appContext.packageName)
     }
 }
