@@ -160,16 +160,19 @@ workflows:
     jobs:
       - build_debug:
           <<: *filter_all_tags
-      - test_instrumented:
-          requires:
-            - build_debug
-          <<: *filter_all_tags
       - check:
           requires:
             - build_debug
           <<: *filter_all_tags
       - build_release:
           requires:
-            - test_instrumented
             - check
           <<: *filter_all_tags
+      - test_instrumented:
+          requires:
+            - build_debug
+          filters:
+            branches:
+              only: /release-.*/
+            tags:
+              only: /.*/
