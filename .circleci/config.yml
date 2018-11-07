@@ -160,16 +160,16 @@ workflows:
     jobs:
       - build_debug:
           <<: *workflow_filter_all
-#      - test_instrumented:
-#          requires:
-#            - build_debug
-#          <<: *workflow_filter_all
+      - test_instrumented:
+          requires:
+            - build_debug
+          <<: *workflow_filter_all
       - check:
           requires:
             - build_debug
           <<: *workflow_filter_all
       - build_release:
           requires:
-#            - test_instrumented
+            - test_instrumented
             - check
           <<: *workflow_filter_all
