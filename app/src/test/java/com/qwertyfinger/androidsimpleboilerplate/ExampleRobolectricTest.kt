@@ -47,7 +47,7 @@ class ExampleRobolectricTest {
   fun useAppContext() {
     // Context of the app under test.
     val appContext = ApplicationProvider.getApplicationContext<Application>()
-    assertEquals("com.qwertyfinger.androidsimpleboilerplate", appContext.packageName)
+    assertEquals("com.qwertyfinger.androidsimpleboilerplate.debug", appContext.packageName)
   }
 
   @Test
