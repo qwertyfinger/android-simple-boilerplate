@@ -42,12 +42,12 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class ExampleRobolectricTest {
   @Test
   fun useAppContext() {
     // Context of the app under test.
     val appContext = ApplicationProvider.getApplicationContext<Application>()
-    assertEquals("com.qwertyfinger.androidsimpleboilerplate.debug", appContext.packageName)
+    assertEquals("com.qwertyfinger.androidsimpleboilerplate", appContext.packageName)
   }
 
   @Test
