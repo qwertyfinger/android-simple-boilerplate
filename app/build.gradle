@@ -15,10 +15,19 @@ androidExtensions {
   experimental = true
 }
 
+apply plugin: 'com.github.triplet.play'
+play {
+  track = 'internal'
+  defaultToAppBundles = true
+  serviceAccountCredentials = file('../signing/play-publish-account.json')
+}
+
 if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'io.fabric'
 }
+
+def appVersionCode = propOrDef("app.versioncode", 1) as Integer
 
 android {
   compileSdkVersion BuildConfig.targetSdk
@@ -28,7 +37,7 @@ android {
     applicationId 'com.qwertyfinger.androidsimpleboilerplate'
     minSdkVersion BuildConfig.minSdk
     targetSdkVersion BuildConfig.targetSdk
-    versionCode 1
+    versionCode appVersionCode
     versionName '1.0'
 
     testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

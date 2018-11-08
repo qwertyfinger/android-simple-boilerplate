@@ -1,0 +1,1 @@
+Sample app to support android-simple-boilerplate project

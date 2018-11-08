@@ -33,6 +33,7 @@ object Versions {
     val android = "3.2.1"
     val fabric = "1.26.1"
     val google_services = "4.2.0"
+    val play_publisher = "2.0.0-rc1"
   }
 
   val coroutines = "1.0.0"
@@ -78,6 +79,7 @@ object Libraries {
     val fabric =          "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
     val google_services = "com.google.gms:google-services:${Versions.Gradle.google_services}"
     val kotlin =          "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    val play_publisher =  "com.github.triplet.gradle:play-publisher:${Versions.Gradle.play_publisher}"
   }
 
   val coroutines =         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
