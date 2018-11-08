@@ -79,8 +79,8 @@ jobs:
           name: Download Dependencies
           command: ./gradlew dependencies
       - run:
-          name: Assemble and Test APKs
-          command: ./gradlew assembleDebug app:assembleDebugAndroidTest
+          name: Assemble debug APKs
+          command: ./gradlew assembleDebug
       - <<: *clean_secrets
       - <<: *save_cache
       - store_artifacts:
@@ -140,14 +140,18 @@ jobs:
     steps:
       - checkout
       - <<: *attach_workspace
+      - <<: *gen_cache_key
+      - <<: *restore_cache
       - <<: *decrypt_secrets
+      - run:
+          name: Build test APKs
+          command: ./gradlew assembleDebugAndroidTest
       - run:
           name: Setup Google Cloud auth
           command: ftl-tests/setup.sh
       - run:
           name: Run tests on Firebase Test Lab
           command: ftl-tests/run-tests.sh $CIRCLE_BUILD_NUM firebase_test_results
-          when: always
       - <<: *clean_secrets
       - store_artifacts:
           path: firebase_test_results
