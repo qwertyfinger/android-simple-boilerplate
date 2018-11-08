@@ -66,6 +66,13 @@ filter_all_tags: &filter_all_tags
     tags:
       only: /.*/
 
+filter_release_branch: &filter_release_branch
+  filters:
+    branches:
+      only: /release-.*/
+    tags:
+      only: /.*/
+
 jobs:
   build_debug:
     <<: *config_android
@@ -135,17 +142,27 @@ jobs:
           destination: reports
       - <<: *persist_workspace
 
-  test_instrumented:
-    <<: *config_gcloud
+  build_test:
+    <<: *config_android
     steps:
       - checkout
       - <<: *attach_workspace
       - <<: *gen_cache_key
       - <<: *restore_cache
-      - <<: *decrypt_secrets
       - run:
           name: Build test APKs
           command: ./gradlew assembleDebugAndroidTest
+      - store_artifacts:
+          path: app/build/outputs
+          destination: outputs
+      - <<: *persist_workspace
+
+  test_instrumented:
+    <<: *config_gcloud
+    steps:
+      - checkout
+      - <<: *attach_workspace
+      - <<: *decrypt_secrets
       - run:
           name: Setup Google Cloud auth
           command: ftl-tests/setup.sh
@@ -168,15 +185,15 @@ workflows:
           requires:
             - build_debug
           <<: *filter_all_tags
+      - build_test:
+          requires:
+            - build_debug
+          <<: *filter_release_branch
+      - test_instrumented:
+          requires:
+            - build_test
+          <<: *filter_release_branch
       - build_release:
           requires:
             - check
           <<: *filter_all_tags
-      - test_instrumented:
-          requires:
-            - build_debug
-          filters:
-            branches:
-              only: /release-.*/
-            tags:
-              only: /.*/
