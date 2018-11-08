@@ -9,7 +9,7 @@ test_apk() {
 	    --type instrumentation \
 	    --app $2 \
 	    --test $3 \
-	    --device model=Nexus6P,version=27,locale=en_US,orientation=portrait \
+	    --device model=walleye,version=28,locale=en_US,orientation=portrait \
 	    --timeout 20m \
 	    --results-dir=${RESULTS_DIR} \
 	    --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \

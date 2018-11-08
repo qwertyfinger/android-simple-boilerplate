@@ -66,6 +66,13 @@ filter_all_tags: &filter_all_tags
     tags:
       only: /.*/
 
+filter_release_branch: &filter_release_branch
+  filters:
+    branches:
+      only: /release-.*/
+    tags:
+      only: /.*/
+
 jobs:
   build_debug:
     <<: *config_android
@@ -79,8 +86,8 @@ jobs:
           name: Download Dependencies
           command: ./gradlew dependencies
       - run:
-          name: Assemble and Test APKs
-          command: ./gradlew assembleDebug app:assembleDebugAndroidTest
+          name: Assemble debug APKs
+          command: ./gradlew assembleDebug
       - <<: *clean_secrets
       - <<: *save_cache
       - store_artifacts:
@@ -135,6 +142,21 @@ jobs:
           destination: reports
       - <<: *persist_workspace
 
+  build_test:
+    <<: *config_android
+    steps:
+      - checkout
+      - <<: *attach_workspace
+      - <<: *gen_cache_key
+      - <<: *restore_cache
+      - run:
+          name: Build test APKs
+          command: ./gradlew assembleDebugAndroidTest
+      - store_artifacts:
+          path: app/build/outputs
+          destination: outputs
+      - <<: *persist_workspace
+
   test_instrumented:
     <<: *config_gcloud
     steps:
@@ -147,7 +169,6 @@ jobs:
       - run:
           name: Run tests on Firebase Test Lab
           command: ftl-tests/run-tests.sh $CIRCLE_BUILD_NUM firebase_test_results
-          when: always
       - <<: *clean_secrets
       - store_artifacts:
           path: firebase_test_results
@@ -164,15 +185,15 @@ workflows:
           requires:
             - build_debug
           <<: *filter_all_tags
+      - build_test:
+          requires:
+            - build_debug
+          <<: *filter_release_branch
+      - test_instrumented:
+          requires:
+            - build_test
+          <<: *filter_release_branch
       - build_release:
           requires:
             - check
           <<: *filter_all_tags
-      - test_instrumented:
-          requires:
-            - build_debug
-          filters:
-            branches:
-              only: /release-.*/
-            tags:
-              only: /.*/
