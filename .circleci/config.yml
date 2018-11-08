@@ -70,8 +70,6 @@ filter_release_branch: &filter_release_branch
   filters:
     branches:
       only: /release-.*/
-    tags:
-      only: /.*/
 
 jobs:
   build_debug:
