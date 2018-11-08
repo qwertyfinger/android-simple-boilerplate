@@ -27,6 +27,8 @@ if (file('google-services.json').exists()) {
   apply plugin: 'io.fabric'
 }
 
+def appVersionCode = propOrDef("app.versioncode", 1) as Integer
+
 android {
   compileSdkVersion BuildConfig.targetSdk
   buildToolsVersion BuildConfig.buildTools
@@ -35,7 +37,7 @@ android {
     applicationId 'com.qwertyfinger.androidsimpleboilerplate'
     minSdkVersion BuildConfig.minSdk
     targetSdkVersion BuildConfig.targetSdk
-    versionCode 1
+    versionCode appVersionCode
     versionName '1.0'
 
     testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
