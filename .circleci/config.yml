@@ -175,6 +175,19 @@ jobs:
       - store_test_results:
           path: firebase_test_results
 
+  publish_on_play:
+    <<: *config_android
+    steps:
+      - checkout
+      - <<: *gen_cache_key
+      - <<: *restore_cache
+      - <<: *attach_workspace
+      - <<: *decrypt_secrets
+      - run:
+          name: Publish on Play Store
+          command: ./gradlew publish -Papp.versioncode=$CIRCLE_BUILD_NUM
+      - <<: *clean_secrets
+
 workflows:
   version: 2
   build_test_deploy:
@@ -197,3 +210,11 @@ workflows:
           requires:
             - check
           <<: *filter_all_tags
+      - publish_on_play:
+          requires:
+            - build_release
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
