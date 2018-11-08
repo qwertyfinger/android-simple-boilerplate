@@ -16,9 +16,10 @@ build
 *.apk
 *.aab
 
-# Do not commit plain release keys
+# Do not commit plain credentials and keys
 signing/app-release.jks
 signing/keystore.properties
+signing/play-publish-account.json
 
 # Do not commit Firebase config
 google-services.json

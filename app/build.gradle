@@ -16,6 +16,11 @@ androidExtensions {
 }
 
 apply plugin: 'com.github.triplet.play'
+play {
+  track = 'internal'
+  defaultToAppBundles = true
+  serviceAccountCredentials = file('../signing/play-publish-account.json')
+}
 
 if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
