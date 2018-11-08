@@ -24,7 +24,9 @@
 
 package com.qwertyfinger.androidsimpleboilerplate
 
+import android.app.Application
 import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -41,7 +43,15 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
   @Test
+  fun useAppContext() {
+    // Context of the app under test.
+    val appContext = ApplicationProvider.getApplicationContext<Application>()
+    assert(appContext.packageName.startsWith("com.qwertyfinger.androidsimpleboilerplate"))
+  }
+
+  @Test
   fun checkHelloWorldLabel() {
+    // Use new ActivityScenario API to launch MainActivity
     ActivityScenario.launch(MainActivity::class.java)
     onView(withId(R.id.helloworld)).check(matches(withText("Hello World!")))
   }
