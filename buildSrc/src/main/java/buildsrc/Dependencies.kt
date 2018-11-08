@@ -37,7 +37,7 @@ object Versions {
     val play_publisher = "2.0.0-rc1"
   }
 
-  val coroutines = "1.0.0"
+  val coroutines = "1.0.1"
   val crashlytics = "2.9.6@aar"
   val dagger = "2.19"
   val firebase_core = "16.0.4"
