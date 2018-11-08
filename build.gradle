@@ -10,6 +10,7 @@ buildscript {
 
   dependencies {
     classpath Libraries.Gradle.android
+    classpath Libraries.Gradle.dexcount
     classpath Libraries.Gradle.fabric
     classpath Libraries.Gradle.google_services
     classpath Libraries.Gradle.kotlin
