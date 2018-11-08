@@ -13,6 +13,7 @@ buildscript {
     classpath Libraries.Gradle.fabric
     classpath Libraries.Gradle.google_services
     classpath Libraries.Gradle.kotlin
+    classpath Libraries.Gradle.play_publisher
 
     /*
      * Temporary workaround for using latest Dagger versions with Jetifier.
