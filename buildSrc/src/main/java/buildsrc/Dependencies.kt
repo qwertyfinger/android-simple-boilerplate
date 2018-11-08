@@ -38,7 +38,7 @@ object Versions {
   }
 
   val coroutines = "1.0.1"
-  val crashlytics = "2.9.6@aar"
+  val crashlytics = "2.9.6"
   val dagger = "2.19"
   val firebase_core = "16.0.4"
   val firebase_perf = "16.2.0"
