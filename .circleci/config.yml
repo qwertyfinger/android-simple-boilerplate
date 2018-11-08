@@ -61,7 +61,7 @@ clean_secrets: &clean_secrets
     name: Cleanup secrets
     command: signing/cleanup.sh
 
-workflow_filter_all: &workflow_filter_all
+filter_all_tags: &filter_all_tags
   filters:
     tags:
       only: /.*/
@@ -97,7 +97,7 @@ jobs:
         - <<: *restore_cache
         - run:
             name: Check app and dependencies
-            command: ./gradlew check dependencyUpdates
+            command: ./gradlew dependencyUpdates lintRelease spotlessCheck testReleaseUnitTest
         - store_artifacts:
             path: app/build/reports
             destination: reports
@@ -159,17 +159,20 @@ workflows:
   build_test_deploy:
     jobs:
       - build_debug:
-          <<: *workflow_filter_all
-      - test_instrumented:
-          requires:
-            - build_debug
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
       - check:
           requires:
             - build_debug
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
       - build_release:
           requires:
-            - test_instrumented
             - check
-          <<: *workflow_filter_all
+          <<: *filter_all_tags
+      - test_instrumented:
+          requires:
+            - build_debug
+          filters:
+            branches:
+              only: /release-.*/
+            tags:
+              only: /.*/
