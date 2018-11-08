@@ -13,7 +13,7 @@ object BuildConfig {
 object Versions {
 
   object AndroidX {
-    val appcompat = "1.0.1"
+    val appcompat = "1.0.2"
     val constraint_layout = "1.1.3"
     val core_ktx = "1.0.1"
     val lifecycle = "2.0.0"
