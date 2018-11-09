@@ -10,38 +10,13 @@
 # Repackage all classes to save some space.
 -repackageclasses ''
 
-# *** LEAKCANARY ***
--keepclassmembers class org.eclipse.mat.** { *; }
--keepclassmembers class com.squareup.leakcanary.** { *; }
-
 # *** CRASHLYTICS ***
 -keepattributes SourceFile, LineNumberTable
--keepclassmembers public class * extends java.lang.Exception
--keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
+-keep public class * extends java.lang.Exception
 -renamesourcefileattribute SourceFile
-
-# *** EVENTBUS ***
-# Keep methods subscribed for the EventBus callbacks.
--keepclassmembers class ** {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keepclassmembers enum org.greenrobot.eventbus.ThreadMode { *; }
-# Only required if you use AsyncExecutor.
--keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
-    <init>(java.lang.Throwable);
-}
 
 # *** DAGGER ***
 -dontwarn com.google.errorprone.annotations.**
-
-# *** GLIDE ***
--keepclassmembers public class * implements com.bumptech.glide.module.GlideModule
--keepclassmembers public class * extends com.bumptech.glide.module.AppGlideModule
--keepclassmembers public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
 
 # *** JSR 305 – ignore annotations for embedding nullability information. ***
 -dontwarn javax.annotation.**
@@ -81,53 +56,9 @@
 -dontnote retrofit2.Platform
 -dontwarn retrofit2.Platform$Java8
 
-# *** MOSHI ***
--keepclasseswithmembers class * {
-    @com.squareup.moshi.* <methods>;
-}
--keep @com.squareup.moshi.JsonQualifier interface *
-
-# Enum field names are used by the integrated EnumJsonAdapter.
-# Annotate enums with @JsonClass(generateAdapter = false) to use them with Moshi.
--keepclassmembers @com.squareup.moshi.JsonClass class * extends java.lang.Enum {
-    <fields>;
-}
-
-# The name of @JsonClass types is used to look up the generated adapter.
--keepnames @com.squareup.moshi.JsonClass class *
-
-# Retain generated JsonAdapters if annotated type is retained.
--if @com.squareup.moshi.JsonClass class *
--keep class <1>JsonAdapter {
-    <init>(...);
-    <fields>;
-}
-
--keep class kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoaderImpl
--keepclassmembers class kotlin.Metadata {
-    public <methods>;
-}
--keepclassmembers class * {
-    @com.squareup.moshi.FromJson <methods>;
-    @com.squareup.moshi.ToJson <methods>;
-}
--keepnames @kotlin.Metadata class com.example.model.**
--keep class com.example.model.** { *; }
--keepclassmembers class com.example.model.** { *; }
-
-# *** MVRX ***
-# Need to keep class name due to kotlin-reflect
--keep interface com.airbnb.mvrx.MvRxState
-# !! Tweak this once https://issuetracker.google.com/issues/112386012 is fixed !!
-# Need to keep class name due to kotlin-reflect
--keep class * implements com.airbnb.mvrx.MvRxState { *; }
-
 # *** KOTLIN ***
 # Kotlin classes with @Parcelize
 -dontwarn com.example.model.**
-
-# Kotlin Reflect internal impl
--keep public class kotlin.reflect.jvm.internal.impl.builtins.* { public *; }
 
 # Strip out Kotlin runtime null checks
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
