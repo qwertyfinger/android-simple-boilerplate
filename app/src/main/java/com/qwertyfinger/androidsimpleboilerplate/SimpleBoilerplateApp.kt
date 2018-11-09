@@ -1,24 +1,21 @@
 package com.qwertyfinger.androidsimpleboilerplate
 
 import android.app.Application
-import com.crashlytics.android.Crashlytics
+import com.qwertyfinger.androidsimpleboilerplate.appinitializer.AppInitializers
 import com.qwertyfinger.androidsimpleboilerplate.inject.AppComponent
 import com.qwertyfinger.androidsimpleboilerplate.inject.DaggerAppComponent
-import com.qwertyfinger.androidsimpleboilerplate.util.KEY_TIMESTAMP
-import com.squareup.leakcanary.LeakCanary
-import timber.log.Timber
+import javax.inject.Inject
 
 lateinit var injector : AppComponent
   private set
 
 class SimpleBoilerplateApp : Application() {
+  @Inject lateinit var initializers: AppInitializers
 
   override fun onCreate() {
     super.onCreate()
     injectAppComponent()
-    setupLeakCanary()
-    setupTimber()
-    setupUncaughtExceptionInterceptor()
+    initializers.init(this)
   }
 
   private fun injectAppComponent() {
@@ -27,33 +24,5 @@ class SimpleBoilerplateApp : Application() {
         .application(this)
         .build()
     injector.inject(this)
-  }
-
-  private fun setupLeakCanary() {
-    if (LeakCanary.isInAnalyzerProcess(this)) {
-      // This process is dedicated to LeakCanary for heap analysis.
-      // You should not init your app in this process.
-      return
-    }
-    LeakCanary.install(this)
-  }
-
-  private fun setupTimber() {
-    if (BuildConfig.DEBUG) {
-      Timber.plant(Timber.DebugTree())
-    }
-  }
-
-  private fun setupUncaughtExceptionInterceptor() {
-    val defaultHandler: Thread.UncaughtExceptionHandler =
-      Thread.getDefaultUncaughtExceptionHandler()
-
-    Thread.setDefaultUncaughtExceptionHandler { thread, exception ->
-      try {
-        Crashlytics.setLong(KEY_TIMESTAMP, System.currentTimeMillis())
-      } finally {
-        defaultHandler.uncaughtException(thread, exception)
-      }
-    }
   }
 }
