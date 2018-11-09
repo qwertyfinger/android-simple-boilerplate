@@ -25,15 +25,15 @@
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # *** RETROFIT ***
+-dontnote retrofit2.Platform
+
 # Retrofit does reflection on generic parameters and InnerClass is required to use Signature.
--keepattributes Signature, InnerClasses, Exceptions
+-keepattributes Exceptions
 
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
-
--dontnote retrofit2.Platform
 
 # *** COROUTINES ***
 # ServiceLoader support

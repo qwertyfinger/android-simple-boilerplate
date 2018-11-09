@@ -36,6 +36,9 @@
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 
 # *** RETROFIT ***
+-dontnote retrofit2.Platform
+-dontwarn retrofit2.Platform$Java8
+
 # Retrofit does reflection on generic parameters and InnerClass is required to use Signature.
 -keepattributes Exceptions
 
@@ -52,9 +55,6 @@
 
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.-KotlinExtensions
-
--dontnote retrofit2.Platform
--dontwarn retrofit2.Platform$Java8
 
 # *** KOTLIN ***
 # Kotlin classes with @Parcelize
