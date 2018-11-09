@@ -1,37 +1,33 @@
 package com.qwertyfinger.androidsimpleboilerplate.inject
 
-import android.app.Application
-import android.content.Context
-import com.qwertyfinger.androidsimpleboilerplate.appinitializer.AppInitializer
-import com.qwertyfinger.androidsimpleboilerplate.appinitializer.CrashHandlerInitializer
-import com.qwertyfinger.androidsimpleboilerplate.appinitializer.LeakCanaryInitializer
-import com.qwertyfinger.androidsimpleboilerplate.appinitializer.TimberInitializer
+import com.qwertyfinger.androidsimpleboilerplate.inject.scope.PerApplication
 import com.qwertyfinger.androidsimpleboilerplate.main.MainComponent
-import com.qwertyfinger.androidsimpleboilerplate.util.Logger
-import com.qwertyfinger.androidsimpleboilerplate.util.TimberLogger
-import dagger.Binds
+import com.qwertyfinger.androidsimpleboilerplate.util.AppCoroutineDispatchers
+import com.qwertyfinger.androidsimpleboilerplate.util.AppRxSchedulers
 import dagger.Module
-import dagger.Reusable
-import dagger.multibindings.IntoSet
+import dagger.Provides
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.rx2.asCoroutineDispatcher
 
-@Module(subcomponents = [(MainComponent::class)])
-abstract class AppModule {
-  @Binds
-  abstract fun provideContext(application: Application): Context
+@Module(includes = [(AppModuleBinds::class)], subcomponents = [(MainComponent::class)])
+object AppModule {
+  @JvmStatic
+  @PerApplication
+  @Provides
+  fun provideRxSchedulers(): AppRxSchedulers = AppRxSchedulers(
+      io = Schedulers.io(),
+      computation = Schedulers.computation(),
+      main = AndroidSchedulers.mainThread()
+  )
 
-  @Reusable
-  @Binds
-  abstract fun provideLogger(bind: TimberLogger): Logger
-
-  @Binds
-  @IntoSet
-  abstract fun provideCrashHandlerInitializer(bind: CrashHandlerInitializer): AppInitializer
-
-  @Binds
-  @IntoSet
-  abstract fun provideLeakCanaryInitializer(bind: LeakCanaryInitializer): AppInitializer
-
-  @Binds
-  @IntoSet
-  abstract fun provideTimberInitializer(bind: TimberInitializer): AppInitializer
+  @JvmStatic
+  @PerApplication
+  @Provides
+  fun provideCoroutineDispatchers(schedulers: AppRxSchedulers) = AppCoroutineDispatchers(
+      io = schedulers.io.asCoroutineDispatcher(),
+      computation = schedulers.computation.asCoroutineDispatcher(),
+      main = Dispatchers.Main
+  )
 }

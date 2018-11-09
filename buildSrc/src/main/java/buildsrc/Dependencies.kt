@@ -49,7 +49,12 @@ object Versions {
   val mockito = "2.22.0" // Pinning this due to https://github.com/mockito/mockito/issues/1511
   val mockito_kotlin = "2.0.0"
   val robolectric = "4.0.1"
+  val rxandroid = "2.1.0"
+  val rxjava = "2.2.3"
+  val rxkotlin = "2.3.0"
+  val rxlint = "1.7.1"
   val threetenabp = "1.1.1"
+  val threetenbp = "1.3.8"
   val timber = "4.7.1"
 }
 
@@ -86,6 +91,7 @@ object Libraries {
 
   val coroutines =         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
   val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+  val coroutines_rx =      "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Versions.coroutines}"
   val crashlytics =        "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
   val dagger =             "com.google.dagger:dagger:${Versions.dagger}"
   val dagger_compiler =    "com.google.dagger:dagger-compiler:${Versions.dagger}"
@@ -99,6 +105,11 @@ object Libraries {
   val mockito_android =    "org.mockito:mockito-android:${Versions.mockito}"
   val mockito_kotlin =     "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
   val robolectric =        "org.robolectric:robolectric:${Versions.robolectric}"
+  val rxandroid =          "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
+  val rxjava =             "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
+  val rxkotlin =           "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
+  val rxlint =             "nl.littlerobots.rxlint:rxlint:${Versions.rxlint}"
   val threetenabp =        "com.jakewharton.threetenabp:threetenabp:${Versions.threetenabp}"
+  val threetenbp =         "org.threeten:threetenbp:${Versions.threetenbp}:no-tzdb"
   val timber =             "com.jakewharton.timber:timber:${Versions.timber}"
 }

@@ -74,8 +74,8 @@ android {
   buildTypes {
     debug {
       signingConfig signingConfigs.debug
-      minifyEnabled false
-      useProguard false
+      minifyEnabled true
+      useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
           'proguard-rules-debug.pro'
       testProguardFile 'proguard-rules-test.pro'
@@ -163,8 +163,11 @@ dependencies {
   implementation Libraries.AndroidX.recyclerview
   implementation Libraries.AndroidX.lifecycle_extensions
   kapt Libraries.AndroidX.lifecycle_compiler
+
   implementation Libraries.coroutines
   implementation Libraries.coroutines_android
+  implementation Libraries.coroutines_rx
+
   implementation (Libraries.crashlytics) {
     transitive = true
   }
@@ -175,7 +178,14 @@ dependencies {
   debugImplementation Libraries.leakcanary
   releaseImplementation Libraries.leakcanary_no_op
   implementation Libraries.material_design
+
+  implementation Libraries.rxandroid
+  implementation Libraries.rxjava
+  implementation Libraries.rxkotlin
+  debugImplementation Libraries.rxlint
+
   implementation Libraries.threetenabp
+  implementation Libraries.threetenbp
   implementation Libraries.timber
 }
 
