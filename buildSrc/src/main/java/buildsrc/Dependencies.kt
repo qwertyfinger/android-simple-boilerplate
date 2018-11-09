@@ -13,7 +13,7 @@ object BuildConfig {
 object Versions {
 
   object AndroidX {
-    val appcompat = "1.0.1"
+    val appcompat = "1.0.2"
     val constraint_layout = "1.1.3"
     val core_ktx = "1.0.1"
     val lifecycle = "2.0.0"
@@ -37,8 +37,8 @@ object Versions {
     val play_publisher = "2.0.0-rc1"
   }
 
-  val coroutines = "1.0.0"
-  val crashlytics = "2.9.6@aar"
+  val coroutines = "1.0.1"
+  val crashlytics = "2.9.6"
   val dagger = "2.19"
   val firebase_core = "16.0.4"
   val firebase_perf = "16.2.0"
