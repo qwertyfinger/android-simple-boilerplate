@@ -22,15 +22,16 @@
 * SOFTWARE.
 */
 
-package com.qwertyfinger.androidsimpleboilerplate
+package com.qwertyfinger.androidsimpleboilerplate.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.qwertyfinger.androidsimpleboilerplate.R.layout
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setContentView(layout.activity_main)
   }
 }
