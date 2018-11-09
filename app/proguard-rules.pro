@@ -58,7 +58,7 @@
 
 # *** KOTLIN ***
 # Kotlin classes with @Parcelize
--dontwarn com.example.model.**
+-dontwarn com.qwertyfinger.androidsimpleboilerplate.model.**
 
 # Strip out Kotlin runtime null checks
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
