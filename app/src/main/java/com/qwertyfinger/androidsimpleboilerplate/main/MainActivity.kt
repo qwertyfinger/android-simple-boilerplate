@@ -27,11 +27,21 @@ package com.qwertyfinger.androidsimpleboilerplate.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.qwertyfinger.androidsimpleboilerplate.R.layout
+import com.qwertyfinger.androidsimpleboilerplate.injector
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    injectActivityComponent()
     setContentView(layout.activity_main)
+  }
+
+  private fun injectActivityComponent() {
+    injector
+        .mainComponentBuilder()
+        .activity(this)
+        .build()
+        .inject(this)
   }
 }

@@ -2,17 +2,31 @@ package com.qwertyfinger.androidsimpleboilerplate
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.qwertyfinger.androidsimpleboilerplate.inject.AppComponent
+import com.qwertyfinger.androidsimpleboilerplate.inject.DaggerAppComponent
 import com.qwertyfinger.androidsimpleboilerplate.util.KEY_TIMESTAMP
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
+
+lateinit var injector : AppComponent
+  private set
 
 class SimpleBoilerplateApp : Application() {
 
   override fun onCreate() {
     super.onCreate()
+    injectAppComponent()
     setupLeakCanary()
     setupTimber()
     setupUncaughtExceptionInterceptor()
+  }
+
+  private fun injectAppComponent() {
+    injector = DaggerAppComponent
+        .builder()
+        .application(this)
+        .build()
+    injector.inject(this)
   }
 
   private fun setupLeakCanary() {
