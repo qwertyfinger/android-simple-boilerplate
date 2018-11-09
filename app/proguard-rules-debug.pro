@@ -27,7 +27,7 @@
 # *** RETROFIT ***
 -dontnote retrofit2.Platform
 
-# Retrofit does reflection on generic parameters and InnerClass is required to use Signature.
+# Retrofit might look at the type information of exceptions at runtime.
 -keepattributes Exceptions
 
 # Retain service method parameters when optimizing.
