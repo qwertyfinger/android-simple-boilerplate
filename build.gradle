@@ -86,6 +86,20 @@ subprojects {
       target '**/*.kt'
       ktlint(Versions.ktlint).userData(['indent_size': '2'])
       licenseHeaderFile file('../spotless/copyright.kt')
+    }
+    java {
+      target '**/*.java'
+      googleJavaFormat()
+      licenseHeaderFile file('../spotless/copyright.kt')
+    }
+    xml {
+      target '**/*.xml'
+      licenseHeaderFile (file('../spotless/copyright-xml.txt'), '\\<[a-zA-Z]')
+    }
+    format 'misc', {
+      target '**/*.gradle', '**/*.gitignore', '**/*.properties', '**/*.kt', '**/*.pro'
+      trimTrailingWhitespace()
+      indentWithSpaces(2)
       endWithNewline()
     }
   }
