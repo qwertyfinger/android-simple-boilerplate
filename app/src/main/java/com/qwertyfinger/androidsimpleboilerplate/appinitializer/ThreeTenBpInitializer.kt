@@ -33,7 +33,7 @@ import org.threeten.bp.zone.ZoneRulesProvider
 import javax.inject.Inject
 
 class ThreeTenBpInitializer @Inject constructor(
-    private val dispatchers: AppCoroutineDispatchers
+  private val dispatchers: AppCoroutineDispatchers
 ) : AppInitializer {
     override fun init(application: Application) {
         // Init ThreeTenABP

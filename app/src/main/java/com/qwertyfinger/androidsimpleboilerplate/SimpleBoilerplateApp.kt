@@ -30,7 +30,7 @@ import com.qwertyfinger.androidsimpleboilerplate.inject.AppComponent
 import com.qwertyfinger.androidsimpleboilerplate.inject.DaggerAppComponent
 import javax.inject.Inject
 
-lateinit var injector : AppComponent
+lateinit var injector: AppComponent
   private set
 
 class SimpleBoilerplateApp : Application() {

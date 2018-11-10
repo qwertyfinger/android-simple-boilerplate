@@ -27,7 +27,7 @@ package com.qwertyfinger.androidsimpleboilerplate.util
 import kotlinx.coroutines.CoroutineDispatcher
 
 data class AppCoroutineDispatchers(
-    val io: CoroutineDispatcher,
-    val computation: CoroutineDispatcher,
-    val main: CoroutineDispatcher
+  val io: CoroutineDispatcher,
+  val computation: CoroutineDispatcher,
+  val main: CoroutineDispatcher
 )

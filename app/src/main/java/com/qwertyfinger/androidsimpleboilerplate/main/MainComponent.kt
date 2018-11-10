@@ -39,5 +39,4 @@ interface MainComponent {
     @BindsInstance fun activity(activity: MainActivity): Builder
     fun build(): MainComponent
   }
-
 }
