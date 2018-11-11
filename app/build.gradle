@@ -56,6 +56,7 @@ play {
 if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'io.fabric'
+  apply plugin: 'com.google.firebase.firebase-perf'
 }
 
 def appVersionCode = propOrDef("app.versioncode", 1) as Integer

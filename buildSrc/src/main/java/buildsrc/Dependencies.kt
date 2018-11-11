@@ -57,6 +57,7 @@ object Versions {
     val android = "3.2.1"
     val dexcount = "0.8.4"
     val fabric = "1.26.1"
+    val firebase_plugins = "1.1.5"
     val google_services = "4.2.0"
     val play_publisher = "2.0.0-rc1"
   }
@@ -108,6 +109,7 @@ object Libraries {
     val android =         "com.android.tools.build:gradle:${Versions.Gradle.android}"
     val dexcount =        "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
     val fabric =          "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
+    val firebase_plugins = "com.google.firebase:firebase-plugins:${Versions.Gradle.firebase_plugins}"
     val google_services = "com.google.gms:google-services:${Versions.Gradle.google_services}"
     val kotlin =          "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     val play_publisher =  "com.github.triplet.gradle:play-publisher:${Versions.Gradle.play_publisher}"
