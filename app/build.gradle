@@ -198,6 +198,7 @@ dependencies {
   implementation Libraries.dagger
   kapt Libraries.dagger_compiler
   implementation Libraries.firebase_core
+  implementation Libraries.firebase_perf
   implementation Libraries.kotlin
   debugImplementation Libraries.leakcanary
   releaseImplementation Libraries.leakcanary_no_op
