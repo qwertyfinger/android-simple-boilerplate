@@ -46,8 +46,5 @@
   <meta-data
       android:name="firebase_performance_logcat_enabled"
       android:value="${showPerfLogs}"/>
-  <meta-data
-      android:name="firebase_crashlytics_collection_enabled"
-      android:value="false"/>
 
 </manifest>
