@@ -28,6 +28,8 @@ import android.app.Application
 import com.qwertyfinger.androidsimpleboilerplate.appinitializer.AppInitializers
 import com.qwertyfinger.androidsimpleboilerplate.inject.AppComponent
 import com.qwertyfinger.androidsimpleboilerplate.inject.DaggerAppComponent
+import com.qwertyfinger.androidsimpleboilerplate.util.isRobolectricBuild
+import com.squareup.leakcanary.LeakCanary
 import javax.inject.Inject
 
 lateinit var injector: AppComponent
@@ -38,6 +40,7 @@ class SimpleBoilerplateApp : Application() {
 
   override fun onCreate() {
     super.onCreate()
+    if (!isRobolectricBuild() && LeakCanary.isInAnalyzerProcess(this)) return
     injectAppComponent()
     initializers.init(this)
   }

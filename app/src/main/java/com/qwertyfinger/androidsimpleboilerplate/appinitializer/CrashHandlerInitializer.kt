@@ -26,12 +26,15 @@ package com.qwertyfinger.androidsimpleboilerplate.appinitializer
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.qwertyfinger.androidsimpleboilerplate.util.isRobolectricBuild
 import javax.inject.Inject
 
 const val KEY_TIMESTAMP = "timestamp"
 
 class CrashHandlerInitializer @Inject constructor() : AppInitializer {
   override fun init(application: Application) {
+    if (isRobolectricBuild()) return
+
     val defaultHandler: Thread.UncaughtExceptionHandler =
       Thread.getDefaultUncaughtExceptionHandler()
 

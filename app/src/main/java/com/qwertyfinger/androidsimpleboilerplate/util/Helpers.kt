@@ -22,16 +22,8 @@
  * SOFTWARE.
  */
 
-package com.qwertyfinger.androidsimpleboilerplate.appinitializer
+package com.qwertyfinger.androidsimpleboilerplate.util
 
-import android.app.Application
-import com.qwertyfinger.androidsimpleboilerplate.util.isRobolectricBuild
-import com.squareup.leakcanary.LeakCanary
-import javax.inject.Inject
+import android.os.Build
 
-class LeakCanaryInitializer @Inject constructor() : AppInitializer {
-  override fun init(application: Application) {
-    if (isRobolectricBuild()) return
-    LeakCanary.install(application)
-  }
-}
+fun isRobolectricBuild(): Boolean = Build.FINGERPRINT == "robolectric"
