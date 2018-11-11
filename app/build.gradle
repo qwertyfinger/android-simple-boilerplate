@@ -184,9 +184,9 @@ dependencies {
   implementation Libraries.AndroidX.appcompat
   implementation Libraries.AndroidX.constraint_layout
   implementation Libraries.AndroidX.core_ktx
-  implementation Libraries.AndroidX.recyclerview
   implementation Libraries.AndroidX.lifecycle_extensions
   kapt Libraries.AndroidX.lifecycle_compiler
+  implementation Libraries.AndroidX.recyclerview
 
   implementation Libraries.coroutines
   implementation Libraries.coroutines_android
