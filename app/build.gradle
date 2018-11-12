@@ -56,7 +56,9 @@ play {
 if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'io.fabric'
-  apply plugin: 'com.google.firebase.firebase-perf'
+  if (project.hasProperty('useFirebasePerf')) {
+    apply plugin: 'com.google.firebase.firebase-perf'
+  }
 }
 
 def appVersionCode = propOrDef("app.versioncode", 1) as Integer
@@ -106,7 +108,6 @@ android {
       testProguardFile 'proguard-rules-test.pro'
       applicationIdSuffix '.debug'
       versionNameSuffix "-dev [${getGitHash()}]"
-      manifestPlaceholders.showPerfLogs = 'true'
     }
     release {
       signingConfig signingConfigs.release
@@ -114,7 +115,6 @@ android {
       minifyEnabled true
       useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-      manifestPlaceholders.showPerfLogs = 'false'
     }
   }
 
@@ -199,7 +199,9 @@ dependencies {
   implementation Libraries.dagger
   kapt Libraries.dagger_compiler
   implementation Libraries.firebase_core
-  implementation Libraries.firebase_perf
+  if (project.hasProperty('useFirebasePerf')) {
+    implementation Libraries.firebase_perf
+  }
   implementation Libraries.kotlin
   debugImplementation Libraries.leakcanary
   releaseImplementation Libraries.leakcanary_no_op
