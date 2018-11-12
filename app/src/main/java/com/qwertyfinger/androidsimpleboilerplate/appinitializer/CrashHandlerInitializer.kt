@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,29 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.appinitializer
+
+import android.app.Application
+import com.crashlytics.android.Crashlytics
+import com.qwertyfinger.androidsimpleboilerplate.util.isRobolectricBuild
+import javax.inject.Inject
+
+const val KEY_TIMESTAMP = "timestamp"
+
+class CrashHandlerInitializer @Inject constructor() : AppInitializer {
+  override fun init(application: Application) {
+    if (isRobolectricBuild()) return
+
+    val defaultHandler: Thread.UncaughtExceptionHandler =
+      Thread.getDefaultUncaughtExceptionHandler()
+
+    Thread.setDefaultUncaughtExceptionHandler { thread, exception ->
+      try {
+        // Log some relevant information to Crashlytics
+        Crashlytics.setLong(KEY_TIMESTAMP, System.currentTimeMillis())
+      } finally {
+        defaultHandler.uncaughtException(thread, exception)
+      }
+    }
+  }
+}

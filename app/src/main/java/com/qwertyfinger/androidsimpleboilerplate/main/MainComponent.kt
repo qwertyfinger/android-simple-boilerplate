@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,21 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.main
+
+import com.qwertyfinger.androidsimpleboilerplate.inject.scope.PerActivity
+import dagger.BindsInstance
+import dagger.Subcomponent
+
+@PerActivity
+@Subcomponent(modules = [(MainModule::class)])
+interface MainComponent {
+
+  fun inject(activity: MainActivity)
+
+  @Subcomponent.Builder
+  interface Builder {
+    @BindsInstance fun activity(activity: MainActivity): Builder
+    fun build(): MainComponent
+  }
+}

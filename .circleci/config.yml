@@ -129,8 +129,28 @@ jobs:
       - <<: *restore_cache
       - <<: *decrypt_secrets
       - run:
+          name: Assemble APKs
+          command: ./gradlew assembleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM
+      - <<: *clean_secrets
+      - store_artifacts:
+          path: app/build/outputs
+          destination: outputs
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - <<: *persist_workspace
+
+  build_release_prod:
+    <<: *config_android
+    steps:
+      - checkout
+      - <<: *attach_workspace
+      - <<: *gen_cache_key
+      - <<: *restore_cache
+      - <<: *decrypt_secrets
+      - run:
           name: Assemble App Bundles
-          command: ./gradlew bundleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM
+          command: ./gradlew bundleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM -PuseFirebasePerf
       - <<: *clean_secrets
       - store_artifacts:
           path: app/build/outputs
@@ -207,10 +227,22 @@ workflows:
       - build_release:
           requires:
             - check
-          <<: *filter_all_tags
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: /release-.*/
+      - build_release_prod:
+          requires:
+            - check
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: /release-.*/
       - publish_on_play:
           requires:
-            - build_release
+            - build_release_prod
           filters:
             tags:
               only: /^v.*/

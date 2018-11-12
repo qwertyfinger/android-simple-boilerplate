@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,16 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.appinitializer
+
+import android.app.Application
+import com.qwertyfinger.androidsimpleboilerplate.util.isRobolectricBuild
+import com.squareup.leakcanary.LeakCanary
+import javax.inject.Inject
+
+class LeakCanaryInitializer @Inject constructor() : AppInitializer {
+  override fun init(application: Application) {
+    if (isRobolectricBuild()) return
+    LeakCanary.install(application)
+  }
+}

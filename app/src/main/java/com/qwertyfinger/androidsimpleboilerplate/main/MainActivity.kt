@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,26 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.main
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.qwertyfinger.androidsimpleboilerplate.R.layout
+import com.qwertyfinger.androidsimpleboilerplate.injector
+
+class MainActivity : AppCompatActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    injectActivityComponent()
+    setContentView(layout.activity_main)
+  }
+
+  private fun injectActivityComponent() {
+    injector
+        .mainComponentBuilder()
+        .activity(this)
+        .build()
+        .inject(this)
+  }
+}

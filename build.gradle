@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Andrii Chubko
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 import buildsrc.Libraries
 import buildsrc.Versions
 
@@ -12,6 +36,7 @@ buildscript {
     classpath Libraries.Gradle.android
     classpath Libraries.Gradle.dexcount
     classpath Libraries.Gradle.fabric
+    classpath Libraries.Gradle.firebase_plugins
     classpath Libraries.Gradle.google_services
     classpath Libraries.Gradle.kotlin
     classpath Libraries.Gradle.play_publisher
@@ -62,6 +87,20 @@ subprojects {
       target '**/*.kt'
       ktlint(Versions.ktlint).userData(['indent_size': '2'])
       licenseHeaderFile file('../spotless/copyright.kt')
+    }
+    java {
+      target '**/*.java'
+      googleJavaFormat()
+      licenseHeaderFile file('../spotless/copyright.kt')
+    }
+    xml {
+      target '**/*.xml'
+      licenseHeaderFile (file('../spotless/copyright-xml.txt'), '\\<[a-zA-Z]')
+    }
+    format 'misc', {
+      target '**/*.gradle', '**/*.gitignore', '**/*.properties', '**/*.kt', '**/*.pro'
+      trimTrailingWhitespace()
+      indentWithSpaces(2)
       endWithNewline()
     }
   }

@@ -23,6 +23,3 @@
   ~ SOFTWARE.
   -->
 
-<resources>
-  <string name="app_name">Android Simple Boilerplate</string>
-</resources>

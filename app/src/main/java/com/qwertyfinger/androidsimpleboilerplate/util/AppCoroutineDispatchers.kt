@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,12 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.util
+
+import kotlinx.coroutines.CoroutineDispatcher
+
+data class AppCoroutineDispatchers(
+  val io: CoroutineDispatcher,
+  val computation: CoroutineDispatcher,
+  val main: CoroutineDispatcher
+)

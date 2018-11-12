@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $YEAR Andrii Chubko
+ * Copyright (c) 2018 Andrii Chubko
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,3 +22,26 @@
  * SOFTWARE.
  */
 
+package com.qwertyfinger.androidsimpleboilerplate.appinitializer
+
+import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
+import com.qwertyfinger.androidsimpleboilerplate.util.AppCoroutineDispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.threeten.bp.zone.ZoneRulesProvider
+import javax.inject.Inject
+
+class ThreeTenBpInitializer @Inject constructor(
+  private val dispatchers: AppCoroutineDispatchers
+) : AppInitializer {
+    override fun init(application: Application) {
+        // Init ThreeTenABP
+        AndroidThreeTen.init(application)
+
+        // Query the ZoneRulesProvider so that it is loaded on a background coroutine
+        GlobalScope.launch(dispatchers.io) {
+            ZoneRulesProvider.getAvailableZoneIds()
+        }
+    }
+}
