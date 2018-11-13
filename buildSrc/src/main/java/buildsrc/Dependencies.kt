@@ -73,7 +73,7 @@ object Versions {
   val material_design = "1.0.0"
   val mockito = "2.22.0" // Pinning this due to https://github.com/mockito/mockito/issues/1511
   val mockito_kotlin = "2.0.0"
-  val robolectric = "4.0.1"
+  val robolectric = "4.0.2"
   val rxandroid = "2.1.0"
   val rxjava = "2.2.3"
   val rxkotlin = "2.3.0"
