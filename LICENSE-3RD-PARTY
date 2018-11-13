@@ -3,12 +3,14 @@
         applies to:
         - Dagger, Copyright 2012 The Dagger Authors
         - Dexcount Gradle Plugin, Copyright 2015-2018 Keepsafe Software, Inc
+        - Gradle Versions Plugin, Copyright 2012-2015 Ben Manes
         - Kotlin, Copyright 2010-2018 JetBrains s.r.o.
         - LeakCanary, Copyright 2015 Square, Inc.
         - RxAndroid, Copyright 2015 The RxAndroid authors
-        - RxJava, Copyright 2016-present RxJava Contributors.
+        - RxJava, Copyright 2016-present RxJava Contributors
         - RxKotlin, Copyright 2012 Netflix, Inc.
         - rxlint, Copyright 2016 Little Robots
+        - Spotless, Copyright 2016 DiffPlug
         - ThreeTenABP, Copyright 2015 Jake Wharton
         - Timber, Copyright 2013 Jake Wharton
         - Tivi, Copyright 2017 Google, Inc.
