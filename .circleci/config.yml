@@ -85,12 +85,15 @@ jobs:
           command: ./gradlew dependencies
       - run:
           name: Assemble debug APKs
-          command: ./gradlew assembleDebug -Papp.versioncode=$CIRCLE_BUILD_NUM
+          command: ./gradlew assembleDebug -Papp.versioncode=$CIRCLE_BUILD_NUM --profile
       - <<: *clean_secrets
       - <<: *save_cache
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
+      - store_artifacts:
+          path: build/reports
+          destination: reports
       - <<: *persist_workspace
 
   check:
@@ -130,13 +133,16 @@ jobs:
       - <<: *decrypt_secrets
       - run:
           name: Assemble APKs
-          command: ./gradlew assembleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM
+          command: ./gradlew assembleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM --profile
       - <<: *clean_secrets
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
       - store_artifacts:
           path: app/build/reports
+          destination: reports
+      - store_artifacts:
+          path: build/reports
           destination: reports
       - <<: *persist_workspace
 
@@ -150,13 +156,16 @@ jobs:
       - <<: *decrypt_secrets
       - run:
           name: Assemble App Bundles
-          command: ./gradlew bundleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM -PuseFirebasePerf
+          command: ./gradlew bundleRelease -Papp.versioncode=$CIRCLE_BUILD_NUM -PuseFirebasePerf --profile
       - <<: *clean_secrets
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
       - store_artifacts:
           path: app/build/reports
+          destination: reports
+      - store_artifacts:
+          path: build/reports
           destination: reports
       - <<: *persist_workspace
 
