@@ -65,7 +65,7 @@ object Versions {
   val coroutines = "1.0.1"
   val crashlytics = "2.9.6"
   val dagger = "2.19"
-  val firebase_core = "16.0.4"
+  val firebase_core = "16.0.5"
   val firebase_perf = "16.2.0"
   val kotlin = "1.3.0"
   @Suppress("unused") val ktlint = "0.29.0"
@@ -73,7 +73,7 @@ object Versions {
   val material_design = "1.0.0"
   val mockito = "2.22.0" // Pinning this due to https://github.com/mockito/mockito/issues/1511
   val mockito_kotlin = "2.0.0"
-  val robolectric = "4.0.1"
+  val robolectric = "4.0.2"
   val rxandroid = "2.1.0"
   val rxjava = "2.2.3"
   val rxkotlin = "2.3.0"
