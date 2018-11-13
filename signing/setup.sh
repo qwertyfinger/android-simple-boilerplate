@@ -7,3 +7,6 @@ openssl aes-256-cbc -md sha256 -d -in signing/app-release.aes -out signing/app-r
 
 # Decrypt Google Services key
 openssl aes-256-cbc -md sha256 -d -in signing/google-services.aes -out app/google-services.json -k $ENCRYPT_KEY
+
+# Decrypt Play publishing key
+openssl aes-256-cbc -md sha256 -d -in signing/play-publish-account.aes -out signing/play-publish-account.json -k $ENCRYPT_KEY

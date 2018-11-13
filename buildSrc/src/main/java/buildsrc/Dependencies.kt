@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Andrii Chubko
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 @file:Suppress("MayBeConstant")
 
 package buildsrc
@@ -13,7 +37,7 @@ object BuildConfig {
 object Versions {
 
   object AndroidX {
-    val appcompat = "1.0.1"
+    val appcompat = "1.0.2"
     val constraint_layout = "1.1.3"
     val core_ktx = "1.0.1"
     val lifecycle = "2.0.0"
@@ -31,14 +55,17 @@ object Versions {
 
   object Gradle {
     val android = "3.2.1"
+    val dexcount = "0.8.4"
     val fabric = "1.26.1"
+    val firebase_plugins = "1.1.5"
     val google_services = "4.2.0"
+    val play_publisher = "2.0.0-rc1"
   }
 
-  val coroutines = "1.0.0"
-  val crashlytics = "2.9.6@aar"
+  val coroutines = "1.0.1"
+  val crashlytics = "2.9.6"
   val dagger = "2.19"
-  val firebase_core = "16.0.4"
+  val firebase_core = "16.0.5"
   val firebase_perf = "16.2.0"
   val kotlin = "1.3.0"
   @Suppress("unused") val ktlint = "0.29.0"
@@ -46,8 +73,13 @@ object Versions {
   val material_design = "1.0.0"
   val mockito = "2.22.0" // Pinning this due to https://github.com/mockito/mockito/issues/1511
   val mockito_kotlin = "2.0.0"
-  val robolectric = "4.0.1"
+  val robolectric = "4.0.2"
+  val rxandroid = "2.1.0"
+  val rxjava = "2.2.3"
+  val rxkotlin = "2.3.0"
+  val rxlint = "1.7.1"
   val threetenabp = "1.1.1"
+  val threetenbp = "1.3.8"
   val timber = "4.7.1"
 }
 
@@ -75,13 +107,17 @@ object Libraries {
 
   object Gradle {
     val android =         "com.android.tools.build:gradle:${Versions.Gradle.android}"
+    val dexcount =        "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
     val fabric =          "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
+    val firebase_plugins = "com.google.firebase:firebase-plugins:${Versions.Gradle.firebase_plugins}"
     val google_services = "com.google.gms:google-services:${Versions.Gradle.google_services}"
     val kotlin =          "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    val play_publisher =  "com.github.triplet.gradle:play-publisher:${Versions.Gradle.play_publisher}"
   }
 
   val coroutines =         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
   val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+  val coroutines_rx =      "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Versions.coroutines}"
   val crashlytics =        "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
   val dagger =             "com.google.dagger:dagger:${Versions.dagger}"
   val dagger_compiler =    "com.google.dagger:dagger-compiler:${Versions.dagger}"
@@ -95,6 +131,11 @@ object Libraries {
   val mockito_android =    "org.mockito:mockito-android:${Versions.mockito}"
   val mockito_kotlin =     "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
   val robolectric =        "org.robolectric:robolectric:${Versions.robolectric}"
+  val rxandroid =          "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
+  val rxjava =             "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
+  val rxkotlin =           "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
+  val rxlint =             "nl.littlerobots.rxlint:rxlint:${Versions.rxlint}"
   val threetenabp =        "com.jakewharton.threetenabp:threetenabp:${Versions.threetenabp}"
+  val threetenbp =         "org.threeten:threetenbp:${Versions.threetenbp}:no-tzdb"
   val timber =             "com.jakewharton.timber:timber:${Versions.timber}"
 }
