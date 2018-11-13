@@ -15,6 +15,9 @@
 # Fixes issue with FTL + Dagger, see https://stackoverflow.com/questions/52759473/firebase-test-lab-fails-when-using-proguard-dagger/52958092#52958092
 -keep class javax.inject.** { *; }
 
+# Keep classes used in tests
+-keepclassmembers class kotlin.text.StringsKt { *; }
+
 # *** CRASHLYTICS ***
 -keepattributes SourceFile, LineNumberTable
 -keep public class * extends java.lang.Exception
