@@ -1,4 +1,4 @@
-# android-simple-boilerplate
+# Android Simple Boilerplate
 Provides a convenient **basic start-off point** for all of your new Android projects.
 
 Tries to employ the best tools and practices.  
