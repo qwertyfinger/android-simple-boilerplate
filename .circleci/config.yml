@@ -61,11 +61,6 @@ clean_secrets: &clean_secrets
     name: Cleanup secrets
     command: signing/cleanup.sh
 
-filter_all_tags: &filter_all_tags
-  filters:
-    tags:
-      only: /.*/
-
 filter_release_branch: &filter_release_branch
   filters:
     branches:
@@ -220,11 +215,17 @@ workflows:
   build_test_publish:
     jobs:
       - build_debug:
-          <<: *filter_all_tags
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /master/
       - check:
           requires:
             - build_debug
-          <<: *filter_all_tags
+          filters:
+            tags:
+              only: /.*/
       - build_test:
           requires:
             - build_debug
