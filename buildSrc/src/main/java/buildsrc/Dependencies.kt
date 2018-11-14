@@ -67,7 +67,7 @@ object Versions {
   val dagger = "2.19"
   val firebase_core = "16.0.5"
   val firebase_perf = "16.2.0"
-  val kotlin = "1.3.0"
+  val kotlin = "1.3.10"
   @Suppress("unused") val ktlint = "0.29.0"
   val leakcanary = "1.6.2"
   val material_design = "1.0.0"
