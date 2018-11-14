@@ -102,7 +102,6 @@ android {
     debug {
       signingConfig signingConfigs.debug
       minifyEnabled true
-      useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
           'proguard-rules-debug.pro'
       testProguardFile 'proguard-rules-test.pro'
@@ -113,7 +112,6 @@ android {
       signingConfig signingConfigs.release
       shrinkResources true
       minifyEnabled true
-      useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
