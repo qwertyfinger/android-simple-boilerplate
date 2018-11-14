@@ -1,13 +1,13 @@
 # This is a configuration file for ProGuard.
 # https://www.guardsquare.com/en/products/proguard/manual/usage
 
-# Print final merged ProGuard configurations in the following file.
+# Print final merged ProGuard configurations in the following file
 -printconfiguration build/outputs/mapping/configuration.txt
 
-# Disable optimizations that are known to cause problems.
+# Disable optimizations that are known to cause problems
 -optimizations !code/allocation/variable,!method/removal/parameter
 
-# Repackage all classes to reduce DEX size.
+# Repackage all classes to reduce DEX size
 -repackageclasses ''
 
 # *** CRASHLYTICS ***
@@ -18,7 +18,7 @@
 # *** DAGGER ***
 -dontwarn com.google.errorprone.annotations.**
 
-# *** JSR 305 – ignore annotations for embedding nullability information. ***
+# *** JSR 305 – ignore annotations for embedding nullability information ***
 -dontwarn javax.annotation.**
 
 # *** OKIO ***
@@ -26,34 +26,34 @@
 
 # *** OKHTTP ***
 -dontwarn okhttp3.**
-# A resource is loaded with a relative path so the package of this class must be preserved.
+# A resource is loaded with a relative path so the package of this class must be preserved
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
-# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
-# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+# OkHttp platform used only on JVM and when Conscrypt dependency is available
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 
 # *** RETROFIT ***
 -dontnote retrofit2.Platform
 -dontwarn retrofit2.Platform$Java8
 
-# Retrofit might look at the type information of exceptions at runtime.
+# Retrofit might look at the type information of exceptions at runtime
 -keepattributes Exceptions
 
-# Retain service method parameters when optimizing.
+# Retain service method parameters when optimizing
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
 
-# Ignore annotation used for build tooling.
+# Ignore annotation used for build tooling
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
-# Guarded by a NoClassDefFoundError try/catch and only used when on the classpath.
+# Guarded by a NoClassDefFoundError try/catch and only used when on the classpath
 -dontwarn kotlin.Unit
 
-# Top-level functions that can only be used by Kotlin.
+# Top-level functions that can only be used by Kotlin
 -dontwarn retrofit2.-KotlinExtensions
 
 # *** KOTLIN ***

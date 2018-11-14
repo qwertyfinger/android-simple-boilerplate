@@ -1,19 +1,16 @@
 # This is a configuration file for ProGuard.
 # https://www.guardsquare.com/en/products/proguard/manual/usage
 
-# Print final merged ProGuard configurations in the following file.
+# Print final merged ProGuard configurations in the following file
 -printconfiguration build/outputs/mapping/configuration.txt
 
-# Disable warnings, obfuscation and optimizations in debug builds.
+# Disable warnings, obfuscation, and optimizations in debug builds
 -ignorewarnings
 -dontobfuscate
 -dontoptimize
 
-# Retain some debug information about local variables (only needed line in debug build type).
+# Retain some debug information about local variables (only needed for debug builds)
 -keepattributes LocalVariableTable, LocalVariableTypeTable
-
-# Fixes issue with FTL + Dagger, see https://stackoverflow.com/questions/52759473/firebase-test-lab-fails-when-using-proguard-dagger/52958092#52958092
--keep class javax.inject.** { *; }
 
 # Keep classes used in tests
 -keepclassmembers class kotlin.text.StringsKt { *; }
@@ -24,16 +21,16 @@
 -renamesourcefileattribute SourceFile
 
 # *** OKHTTP ***
-# A resource is loaded with a relative path so the package of this class must be preserved.
+# A resource is loaded with a relative path so the package of this class must be preserved
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # *** RETROFIT ***
 -dontnote retrofit2.Platform
 
-# Retrofit might look at the type information of exceptions at runtime.
+# Retrofit might look at the type information of exceptions at runtime
 -keepattributes Exceptions
 
-# Retain service method parameters when optimizing.
+# Retain service method parameters when optimizing
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
