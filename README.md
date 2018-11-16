@@ -1,5 +1,5 @@
 # Android Simple Boilerplate
-Provides a convenient **basic start-off point** for all of your new Android projects.
+Provides a convenient **basic start-off point** for all your new Android projects.
 
 Tries to employ the best tools and practices.  
 It **does not** contain any architectural patterns or solutions.
@@ -9,11 +9,11 @@ It draws inspiration from Chris Banes's [Tivi](https://github.com/chrisbanes/tiv
 >***Note:*** the project is Kotlin-based and is not designed to be Java-friendly.
 
 ### Things included
-- Gradle setup with all its little quirks
-- buildSrc module with Gradle Kotlin DSL to provide autocomplete and other niceties in managing Gradle dependencies
-- CI/CD with automated Unit/Robolectric tests, Firebase Test Lab integration, and Play Store publishing
-- Static code analysis
-- Crash reporting via Crashlytics
+- **Gradle setup** with all its little quirks
+- buildSrc module with Gradle Kotlin DSL. It provides autocomplete and other niceties in managing Gradle dependencies
+- **CI/CD** with automated Unit/Robolectric tests, Firebase Test Lab integration, and Play Store publishing
+- **Static code analysis**
+- **Crash reporting** via Crashlytics
 - Firebase Performance Monitoring
 - Simple Dagger2 setup
 
@@ -52,8 +52,8 @@ For detailed instructions on how to configure this template project for you, see
 - [Lifecycles](https://developer.android.com/topic/libraries/architecture/lifecycle) from Android Jetpack to manage Activity and Fragment lifecycles
 
 ## Contributing
-All contributions in form of issues or pull requests are welcomed.  
-All additions and corrections except for grammatical ones preferably should be filed as issues first.
+All contributions in form of issues or pull requests are welcome.  
+You should create an issue first if you want to introduce a significant change.
 
 ## License
 ### Project License
