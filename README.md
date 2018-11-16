@@ -2,11 +2,11 @@
 Provides a convenient **basic start-off point** for all your new Android projects.
 
 Tries to employ the best tools and practices.  
-It **does not** contain any architectural patterns or solutions.
+**Does not** contain any architectural patterns or solutions.
 
 It draws inspiration from Chris Banes's [Tivi](https://github.com/chrisbanes/tivi) but adds many customizations and optimizations.
 
->***Note:*** the project is Kotlin-based and is not designed to be Java-friendly.
+>***Note:*** this project is Kotlin-based and is not designed to be Java-friendly.
 
 ### Things included
 - **Gradle setup** with all its little quirks
