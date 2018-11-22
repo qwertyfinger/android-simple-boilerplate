@@ -59,7 +59,6 @@ object Versions {
     val fabric = "1.26.1"
     val firebase_plugins = "1.1.5"
     val google_services = "4.2.0"
-    val play_publisher = "2.0.0-rc1"
   }
 
   val coroutines = "1.0.1"
@@ -106,13 +105,12 @@ object Libraries {
   }
 
   object Gradle {
-    val android =         "com.android.tools.build:gradle:${Versions.Gradle.android}"
-    val dexcount =        "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
-    val fabric =          "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
+    val android =          "com.android.tools.build:gradle:${Versions.Gradle.android}"
+    val dexcount =         "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
+    val fabric =           "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
     val firebase_plugins = "com.google.firebase:firebase-plugins:${Versions.Gradle.firebase_plugins}"
-    val google_services = "com.google.gms:google-services:${Versions.Gradle.google_services}"
-    val kotlin =          "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    val play_publisher =  "com.github.triplet.gradle:play-publisher:${Versions.Gradle.play_publisher}"
+    val google_services =  "com.google.gms:google-services:${Versions.Gradle.google_services}"
+    val kotlin =           "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
   }
 
   val coroutines =         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
