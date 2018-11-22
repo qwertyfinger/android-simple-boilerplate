@@ -105,12 +105,12 @@ object Libraries {
   }
 
   object Gradle {
-    val android =         "com.android.tools.build:gradle:${Versions.Gradle.android}"
-    val dexcount =        "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
-    val fabric =          "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
+    val android =          "com.android.tools.build:gradle:${Versions.Gradle.android}"
+    val dexcount =         "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Versions.Gradle.dexcount}"
+    val fabric =           "io.fabric.tools:gradle:${Versions.Gradle.fabric}"
     val firebase_plugins = "com.google.firebase:firebase-plugins:${Versions.Gradle.firebase_plugins}"
-    val google_services = "com.google.gms:google-services:${Versions.Gradle.google_services}"
-    val kotlin =          "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    val google_services =  "com.google.gms:google-services:${Versions.Gradle.google_services}"
+    val kotlin =           "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
   }
 
   val coroutines =         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
