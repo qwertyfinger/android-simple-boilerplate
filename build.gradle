@@ -93,10 +93,6 @@ subprojects {
       googleJavaFormat()
       licenseHeaderFile file('../spotless/copyright.kt')
     }
-    xml {
-      target '**/*.xml'
-      licenseHeaderFile (file('../spotless/copyright-xml.txt'), '\\<[a-zA-Z]')
-    }
     format 'misc', {
       target '**/*.gradle', '**/*.gitignore', '**/*.properties', '**/*.kt', '**/*.pro'
       trimTrailingWhitespace()
