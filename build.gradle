@@ -54,6 +54,10 @@ plugins {
   id 'com.github.triplet.play' version '2.1.1'
 }
 
+ext {
+  ci = System.getenv('CI') == 'true'
+}
+
 allprojects {
   repositories {
     google()
@@ -70,10 +74,14 @@ allprojects {
         javacOptions {
           option('-Xmaxerrs', 500)
         }
-        // Disable generated code formatting and enable incremental builds for Dagger
+        // Disable generated code formatting and enable incremental builds for Dagger.
+        // kapt should start supporting incremental annotation processors in upcoming 1.3.30 release.
+        // See https://youtrack.jetbrains.com/issue/KT-23880
         arguments {
-          arg('dagger.formatGeneratedSource', 'disabled')
-          arg('dagger.gradle.incremental', 'enabled')
+          if (!ci) {
+            arg('dagger.formatGeneratedSource', 'disabled')
+            arg('dagger.gradle.incremental', 'enabled')
+          }
         }
       }
     }
