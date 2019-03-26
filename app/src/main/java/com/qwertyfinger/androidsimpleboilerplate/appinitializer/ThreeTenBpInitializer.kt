@@ -35,13 +35,13 @@ import javax.inject.Inject
 class ThreeTenBpInitializer @Inject constructor(
   private val dispatchers: AppCoroutineDispatchers
 ) : AppInitializer {
-    override fun init(application: Application) {
-        // Init ThreeTenABP
-        AndroidThreeTen.init(application)
+  override fun init(application: Application) {
+    // Init ThreeTenABP
+    AndroidThreeTen.init(application)
 
-        // Query the ZoneRulesProvider so that it is loaded on a background coroutine
-        GlobalScope.launch(dispatchers.io) {
-            ZoneRulesProvider.getAvailableZoneIds()
-        }
+    // Query the ZoneRulesProvider so that it is loaded on a background coroutine
+    GlobalScope.launch(dispatchers.io) {
+      ZoneRulesProvider.getAvailableZoneIds()
     }
+  }
 }
