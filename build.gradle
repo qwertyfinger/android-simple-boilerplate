@@ -25,10 +25,6 @@
 import buildsrc.Libraries
 import buildsrc.Versions
 
-ext {
-  ci = System.getenv('CI') == 'true'
-}
-
 buildscript {
   repositories {
     google()
@@ -56,6 +52,10 @@ plugins {
   id 'com.diffplug.gradle.spotless' version '3.20.0'
   id 'com.github.ben-manes.versions' version '0.21.0'
   id 'com.github.triplet.play' version '2.1.1'
+}
+
+ext {
+  ci = System.getenv('CI') == 'true'
 }
 
 allprojects {
