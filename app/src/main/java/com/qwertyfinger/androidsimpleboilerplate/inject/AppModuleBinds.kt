@@ -36,7 +36,6 @@ import com.qwertyfinger.androidsimpleboilerplate.util.Logger
 import com.qwertyfinger.androidsimpleboilerplate.util.TimberLogger
 import dagger.Binds
 import dagger.Module
-import dagger.Reusable
 import dagger.multibindings.IntoSet
 
 @Module
@@ -44,7 +43,6 @@ abstract class AppModuleBinds {
   @Binds
   abstract fun provideContext(application: Application): Context
 
-  @Reusable
   @Binds
   abstract fun provideLogger(bind: TimberLogger): Logger
 
