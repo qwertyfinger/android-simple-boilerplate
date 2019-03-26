@@ -44,14 +44,14 @@ buildscript {
      * Temporary workaround for using latest Dagger versions with Jetifier.
      * See https://issuetracker.google.com/115738511
      */
-    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
+    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta04'
   }
 }
 
 plugins {
-  id 'com.diffplug.gradle.spotless' version '3.16.0'
-  id 'com.github.ben-manes.versions' version '0.20.0'
-  id 'com.github.triplet.play' version '2.0.0-rc2'
+  id 'com.diffplug.gradle.spotless' version '3.20.0'
+  id 'com.github.ben-manes.versions' version '0.21.0'
+  id 'com.github.triplet.play' version '2.1.1'
 }
 
 allprojects {
