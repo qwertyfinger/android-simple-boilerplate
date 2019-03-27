@@ -2,7 +2,7 @@
 Provides a convenient **basic start-off point** for all your new Android projects.
 
 Tries to employ the best tools and practices.  
-**Does not** contain any architectural patterns or solutions.
+**Does not** contain (almost) any architectural patterns or solutions.
 
 It draws inspiration from Chris Banes's [Tivi](https://github.com/chrisbanes/tivi) but adds many customizations and optimizations.
 
