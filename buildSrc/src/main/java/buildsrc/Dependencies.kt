@@ -54,7 +54,7 @@ object Versions {
   }
 
   object Gradle {
-    val android = "3.4.0-rc02"
+    val android = "3.4.0-rc03"
     val dexcount = "0.8.6"
     val fabric = "1.28.1"
     val firebase_plugins = "1.1.5"
@@ -66,7 +66,7 @@ object Versions {
   val dagger = "2.21"
   val firebase_core = "16.0.8"
   val firebase_perf = "16.2.4"
-  val kotlin = "1.3.21"
+  val kotlin = "1.3.30"
   @Suppress("unused") val ktlint = "0.31.0"
   val leakcanary = "1.6.3"
   val material_design = "1.0.0"
