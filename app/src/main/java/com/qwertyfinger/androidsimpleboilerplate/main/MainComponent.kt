@@ -34,9 +34,8 @@ interface MainComponent {
 
   fun inject(activity: MainActivity)
 
-  @Subcomponent.Builder
-  interface Builder {
-    @BindsInstance fun activity(activity: MainActivity): Builder
-    fun build(): MainComponent
+  @Subcomponent.Factory
+  interface Factory {
+    fun create(@BindsInstance activity: MainActivity): MainComponent
   }
 }

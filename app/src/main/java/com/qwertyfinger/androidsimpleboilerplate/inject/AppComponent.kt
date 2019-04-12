@@ -28,7 +28,6 @@ import android.app.Application
 import android.content.Context
 import com.qwertyfinger.androidsimpleboilerplate.SimpleBoilerplateApp
 import com.qwertyfinger.androidsimpleboilerplate.inject.scope.PerApplication
-import com.qwertyfinger.androidsimpleboilerplate.main.MainComponent
 import dagger.BindsInstance
 import dagger.Component
 
@@ -40,11 +39,10 @@ interface AppComponent {
 
   fun appContext(): Context
 
-  fun mainComponentBuilder(): MainComponent.Builder
+  fun mainComponentFactory(): com.qwertyfinger.androidsimpleboilerplate.main.MainComponent.Factory
 
-  @Component.Builder
-  interface Builder {
-    @BindsInstance fun application(application: Application): Builder
-    fun build(): AppComponent
+  @Component.Factory
+  interface Factory {
+    fun create(@BindsInstance application: Application): AppComponent
   }
 }
