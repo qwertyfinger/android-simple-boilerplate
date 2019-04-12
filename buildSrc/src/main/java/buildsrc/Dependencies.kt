@@ -57,13 +57,13 @@ object Versions {
     val android = "3.4.0-rc03"
     val dexcount = "0.8.6"
     val fabric = "1.28.1"
-    val firebase_plugins = "1.1.5"
+    val firebase_plugins = "1.2.0"
     val google_services = "4.2.0"
   }
 
   val coroutines = "1.1.1"
   val crashlytics = "2.9.9"
-  val dagger = "2.21"
+  val dagger = "2.22.1"
   val firebase_core = "16.0.8"
   val firebase_perf = "16.2.4"
   val kotlin = "1.3.30"
