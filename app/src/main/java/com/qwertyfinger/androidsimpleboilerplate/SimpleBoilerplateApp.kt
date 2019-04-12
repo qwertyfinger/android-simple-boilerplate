@@ -47,9 +47,8 @@ class SimpleBoilerplateApp : Application() {
 
   private fun injectAppComponent() {
     injector = DaggerAppComponent
-        .builder()
-        .application(this)
-        .build()
+        .factory()
+        .create(this)
     injector.inject(this)
   }
 }

@@ -39,9 +39,8 @@ class MainActivity : AppCompatActivity() {
 
   private fun injectActivityComponent() {
     injector
-        .mainComponentBuilder()
-        .activity(this)
-        .build()
+        .mainComponentFactory()
+        .create(this)
         .inject(this)
   }
 }
