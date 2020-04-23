@@ -40,7 +40,7 @@ jobs:
           command: ./gradlew dependencies
       - run:
           name: Assemble debug APKs
-          command: ./gradlew assembleDebug -Papp.versioncode=$CIRCLE_BUILD_NUM
+          command: ./gradlew assembleDebug -Papp.versioncode=$CIRCLE_BUILD_NUM --profile
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
@@ -49,7 +49,7 @@ jobs:
           destination: reports
       - <<: *persist_workspace
 
-  check:
+  run_tests:
       <<: *config_android
       steps:
         - checkout
@@ -68,9 +68,9 @@ jobs:
 
 workflows:
   version: 2
-  build_test_publish:
+  build_test:
     jobs:
-      - build_debug:
-      - check:
+      - build_debug
+      - run_tests:
           requires:
             - build_debug
