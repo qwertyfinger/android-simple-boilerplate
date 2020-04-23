@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-simple-boilerplate.iml" filepath="$PROJECT_DIR$/android-simple-boilerplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/android-simple-boilerplate.iml" filepath="$PROJECT_DIR$/.idea/android-simple-boilerplate.iml" group="android-simple-boilerplate" />
+      <module fileurl="file://$PROJECT_DIR$/app/android-simple-boilerplate-app.iml" filepath="$PROJECT_DIR$/app/android-simple-boilerplate-app.iml" group="android-simple-boilerplate/app" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/android-simple-boilerplate-buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/android-simple-boilerplate-buildSrc.iml" group="android-simple-boilerplate/buildSrc" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
     </modules>

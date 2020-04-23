@@ -46,13 +46,6 @@ dexcount {
   enabled = ci
 }
 
-apply plugin: 'com.github.triplet.play'
-play {
-  track = 'internal'
-  defaultToAppBundles = true
-  serviceAccountCredentials = file('../signing/play-publish-account.json')
-}
-
 if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'io.fabric'
@@ -84,17 +77,11 @@ android {
       keyAlias 'debug'
       keyPassword 'qwerty'
     }
-    def keystoreProperties = new Properties()
-    if (ci) {
-      keystoreProperties = project.properties
-    } else {
-      keystoreProperties.load(new FileInputStream(file('../signing/keystore.properties')))
-    }
     release {
-      storeFile file('../signing/app-release.jks')
-      storePassword keystoreProperties['keystorePassword']
-      keyAlias 'androidsimpleboilerplate'
-      keyPassword keystoreProperties['keyPassword']
+      storeFile file('../signing/app-debug.jks')
+      storePassword 'qwerty'
+      keyAlias 'debug'
+      keyPassword 'qwerty'
     }
   }
 

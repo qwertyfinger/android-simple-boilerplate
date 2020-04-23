@@ -28,10 +28,10 @@ package buildsrc
 
 @Suppress("unused")
 object BuildConfig {
-  val buildTools = "28.0.3"
+  val buildTools = "29.0.3"
   val minSdk = 17
-  val targetSdk = 28
-  val compileSdk = 28
+  val targetSdk = 29
+  val compileSdk = 29
 }
 
 object Versions {
@@ -54,7 +54,7 @@ object Versions {
   }
 
   object Gradle {
-    val android = "3.4.0-rc03"
+    val android = "3.6.0"
     val dexcount = "0.8.6"
     val fabric = "1.28.1"
     val firebase_plugins = "1.2.0"
@@ -66,7 +66,7 @@ object Versions {
   val dagger = "2.22.1"
   val firebase_core = "16.0.8"
   val firebase_perf = "16.2.4"
-  val kotlin = "1.3.30"
+  val kotlin = "1.3.70"
   @Suppress("unused") val ktlint = "0.31.0"
   val leakcanary = "1.6.3"
   val material_design = "1.0.0"
