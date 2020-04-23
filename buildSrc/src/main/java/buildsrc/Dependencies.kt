@@ -55,7 +55,7 @@ object Versions {
 
   object Gradle {
     val android = "3.6.0"
-    val dexcount = "0.8.6"
+    val dexcount = "1.0.0"
     val fabric = "1.28.1"
     val firebase_plugins = "1.2.0"
     val google_services = "4.2.0"
