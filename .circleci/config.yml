@@ -60,24 +60,24 @@ jobs:
       - <<: *persist_workspace
 
   run_tests:
-      <<: *config_android
-      steps:
-        - checkout
-        - <<: *attach_workspace
-        - <<: *restore_cache
-        - run:
-            name: Check app and dependencies
-            command: ./gradlew testDebugUnitTest
-        - run:
-            name: Save test results
-            command: |
-              mkdir -p ~/junit/
-              find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
-            when: always
-        - store_test_results:
-            path: ~/junit
-        - store_artifacts:
-            path: ~/junit
+    <<: *config_android
+    steps:
+      - checkout
+      - <<: *attach_workspace
+      - <<: *restore_cache
+      - run:
+          name: Check app and dependencies
+          command: ./gradlew testDebugUnitTest
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
 
 workflows:
   version: 2
