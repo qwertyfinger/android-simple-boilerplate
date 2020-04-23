@@ -25,6 +25,7 @@
 package com.qwertyfinger.androidsimpleboilerplate
 
 import android.app.Application
+import android.os.Build
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
@@ -35,6 +36,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qwertyfinger.androidsimpleboilerplate.main.MainActivity
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -42,6 +44,7 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
+@Config(sdk = [Build.VERSION_CODES.P])
 class ExampleRobolectricTest {
   @Test
   fun useAppContext() {
