@@ -31,18 +31,14 @@ persist_workspace: &persist_workspace
 
 restore_cache: &restore_cache
   restore_cache:
-    keys:
-      - gradle-{{ checksum "build.gradle" }}
-      - gradle-{{ checksum "Dependencies.kt" }}
+    key: gradle-{{ checksum "build.gradle" }}-{{ checksum "Dependencies.kt" }}
 
 save_cache: &save_cache
   save_cache:
+    key: gradle-{{ checksum "build.gradle" }}-{{ checksum "Dependencies.kt" }}
     paths:
       - ~/.gradle/caches
       - ~/.gradle/wrapper
-    keys:
-      - gradle-{{ checksum "build.gradle" }}
-      - gradle-{{ checksum "Dependencies.kt" }}
 
 jobs:
   build_debug:
