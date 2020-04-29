@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 
 workspace: &workspace
   ~/android-simple-boilerplate
@@ -61,23 +61,36 @@ jobs:
 
   run_tests:
     <<: *config_android
+    parallelism: 2
     steps:
       - checkout
       - <<: *attach_workspace
       - <<: *restore_cache
       - run:
-          name: Check app and dependencies
-          command: ./gradlew testDebugUnitTest
+          name: Run tests
+          command: |
+            # Get list of classnames of tests that should run on this node
+            cd app/src/test/java
+            CLASSNAMES=$(circleci tests glob "**/*.kt" \
+              | cut -c 1- | sed 's@/@.@g' \
+              | sed 's/.\{3\}$//' \
+              | circleci tests split --split-by=timings --timings-type=classname)
+            cd ../../../..
+            # Format the arguments to "./gradlew test"
+            GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
+            echo "Prepared arguments for Gradle: $GRADLE_ARGS"
+            ./gradlew testDebugUnitTest $GRADLE_ARGS
+#            circleci tests glob "app/src/test/**/*.kt" | circleci tests split --split-by=timings --timings-type=classname | xargs -n 1 echo
       - run:
           name: Save test results
           command: |
-            mkdir -p ~/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/junit
+          path: ~/test-results
       - store_artifacts:
-          path: ~/junit
+          path: ~/test-results/junit
 
 workflows:
   version: 2
