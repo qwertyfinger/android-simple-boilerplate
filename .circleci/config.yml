@@ -74,8 +74,7 @@ jobs:
             CLASSNAMES=$(circleci tests glob "**/*.kt" \
               | cut -c 1- | sed 's@/@.@g' \
               | sed 's/.\{3\}$//' \
-              | circleci tests split --split-by=timings --timings-type=classname \
-              | xargs -n 1 echo)
+              | circleci tests split --split-by=timings --timings-type=classname)
             cd ../../../..
             # Format the arguments to "./gradlew test"
             GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
