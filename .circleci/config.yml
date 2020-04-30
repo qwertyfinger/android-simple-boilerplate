@@ -52,7 +52,7 @@ jobs:
           command: ./gradlew dependencies
       - run:
           name: Assemble debug APKs
-          command: ./gradlew assembleDebug
+          command: ./gradlew assembleDebug -Papp.versioncode=$CIRCLE_BUILD_NUM
       - <<: *save_cache
       - store_artifacts:
           path: app/build/outputs
