@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 
 workspace: &workspace
   ~/android-simple-boilerplate
@@ -66,18 +66,18 @@ jobs:
       - <<: *attach_workspace
       - <<: *restore_cache
       - run:
-          name: Check app and dependencies
+          name: Run tests
           command: ./gradlew testDebugUnitTest
       - run:
           name: Save test results
           command: |
-            mkdir -p ~/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*.xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/junit
+          path: ~/test-results
       - store_artifacts:
-          path: ~/junit
+          path: ~/test-results/junit
 
 workflows:
   version: 2
