@@ -29,14 +29,14 @@ import org.junit.Test
 
 class Sleep20sTests {
   @Test
-  fun `sleep for 20s`() {
-    Thread.sleep(20000)
+  fun `sleep for 10s`() {
+    Thread.sleep(10000)
     assert(true)
   }
 
   @Test
-  fun `sleep for 4s`() {
-    Thread.sleep(4000)
+  fun `sleep for 5s`() {
+    Thread.sleep(5000)
     assert(true)
   }
 

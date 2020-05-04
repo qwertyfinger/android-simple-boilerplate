@@ -27,16 +27,16 @@ package com.qwertyfinger.androidsimpleboilerplate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class Sleep8sTests {
+class Sleep50sTests {
   @Test
-  fun `sleep for 8s`() {
-    Thread.sleep(8000)
+  fun `sleep for 40s`() {
+    Thread.sleep(40000)
     assert(true)
   }
 
   @Test
-  fun `sleep for 4s`() {
-    Thread.sleep(4000)
+  fun `sleep for 5s`() {
+    Thread.sleep(5000)
     assert(true)
   }
 
